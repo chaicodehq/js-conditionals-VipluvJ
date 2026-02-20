@@ -26,4 +26,36 @@
  */
 export function calculateGrade(score, hasExtraCredit) {
   // Your code here
+
+  function getBonus(totalScore, hasExtraCredit) {
+    let capCheck = (100 - score).toFixed(2);
+
+    if (capCheck > 5 && hasExtraCredit) {
+      totalScore = score + 5;
+      return totalScore;
+    } else {
+      return score;
+    }
+  }
+
+  let totalScore = getBonus(score, hasExtraCredit);
+  if (totalScore >= 90 && totalScore <= 100) {
+    const grade = "A";
+    return grade;
+  } else if (totalScore >= 80 && totalScore <= 89) {
+    const grade = "B";
+    return grade;
+  } else if (totalScore >= 70 && totalScore <= 79) {
+    const grade = "C";
+    return grade;
+  } else if (totalScore >= 60 && totalScore <= 69) {
+    const grade = "D";
+    return grade;
+  } else if (totalScore >= 0 && totalScore <= 59) {
+    const grade = "F";
+    return grade;
+  } else {
+    return "INVALID";
+  }
 }
+calculateGrade(92, false);

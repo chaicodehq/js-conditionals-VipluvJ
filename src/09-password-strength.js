@@ -27,4 +27,50 @@
  */
 export function checkPasswordStrength(password) {
   // Your code here
+  if (typeof password !== "string" || password.length === 0) return "weak";
+
+  const hasUpperCase = /[A-Z]/.test(password);
+  const hasLowerCase = /[a-z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+  const hasSpecialChar = /[!@#$%^&*()_+\-= \[\] {}|;:,.<>?]/.test(password);
+  let criteriaMet = 0;
+
+  if (password.length >= 8) {
+    criteriaMet = criteriaMet + 1;
+  }
+
+  if (hasUpperCase) {
+    criteriaMet = criteriaMet + 1;
+  }
+
+  if (hasLowerCase) {
+    criteriaMet = criteriaMet + 1;
+  }
+
+  if (hasNumber) {
+    criteriaMet = criteriaMet + 1;
+  }
+
+  if (hasSpecialChar) {
+    criteriaMet = criteriaMet + 1;
+  }
+
+  console.log("Password:", password);
+  console.log("Length:", password.length);
+  console.log("Has Uppercase:", hasUpperCase);
+  console.log("Has Lowercase:", hasLowerCase);
+  console.log("Has Number:", hasNumber);
+  console.log("Has Special Char:", hasSpecialChar);
+  console.log("criteriaMet", criteriaMet);
+
+  if (criteriaMet === 0) return "weak";
+  if (criteriaMet === 1) return "weak";
+  if (criteriaMet === 2) return "medium";
+  if (criteriaMet === 3) return "medium";
+  if (criteriaMet === 4) return "strong";
+  if (criteriaMet === 5) return "very strong";
+  console.log(hasSpecialChar);
+  return hasSpecialChar;
 }
+
+checkPasswordStrength("C0mpl3x#Pwd");
